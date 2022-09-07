@@ -1,0 +1,192 @@
+<app-card title="Invoice">
+  <div style="text-align: right">
+    <button  class="btn btn-sm btn-primary" (click)="printInvoice()">Print</button>
+  </div>
+  <br>
+  <div id="invoice">
+  <div style="border : 5px solid;padding:5px">
+  <div style="border: 2px solid;">
+    <div class="preheading">
+      <div class="row">
+        <div class="col-4">
+          GSTIN : {{company['GSTIN']}}
+          <br>
+          StateCode : {{company['State']}}
+        </div>
+        <div class="col-4" style="text-align: center;">
+          Tax Invoice
+        </div>
+        <div class="col-4" style="text-align: right;">
+          Mob. : {{company['CompanyContact']}}
+          <br>
+          totalaquaadvance@gmail.com
+          <br>
+          www.totalaquaadvance.com
+        </div>
+      </div>
+    </div>
+      <div class="heading">
+        {{company['CompanyName']}}
+      </div>
+      <div class="address">
+        {{company['CompanyAddress']}}
+      </div>
+      <div class="content" style="padding : 15px">
+            <div class="bill">
+            <div class="row">
+                <div class="col-sm-2">
+                  Invoice No. :
+                </div>
+                <div class="col-sm-3">
+                  {{model['SaleId']}}
+                </div>
+                <div class="col-sm-2" style="text-align: right;">
+                  Date :
+                </div>
+                <div class="col-sm-3" style="text-align: right;">
+                  {{model['CreatedDate'] | date : "dd/MM/yyyy"}}
+                </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-2">
+                Name : 
+              </div>
+              <div class="col-sm-3">
+                {{model['CustomerName']}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-2">
+                Address : 
+              </div>
+              <div class="col-sm-4">
+                {{school['Address']}}
+              </div>
+            </div>
+            </div>  
+            <div class="table-responsive"  >
+              <table class="table table-bordered">
+                <thead style="text-align: center;">
+                <tr>
+                  <th>SNo.</th>
+                  <th *ngFor="let col of columns">{{col['name']}}</th>
+                </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let row of dataRows, let i = index" style="text-align: center;font-weight: 500;">
+<td >{{i+1}}</td>
+                    <td *ngFor="let col of columns">
+                      {{row[col['prop']]}}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div style=" margin-bottom: 100mm;" *ngIf="dataRows?.length < 10"></div>
+            <div class="bill">
+              <div class="row">
+                <div class="col-8"></div>
+                <!-- <div class="col-4" style="text-align: right;padding-right: 6%;">
+                  <label>Total : Rs. {{model['TotalAmount']}}</label>
+                  <br>
+                  <label>Discount(%) : {{model['discount']}}</label>
+                  <br>
+                  <label>Net Amount : Rs. {{model['NetAmount']}}</label>
+                </div> -->
+                <div class="col-4">
+                  <div class="table-responsive">
+                    <table class="table" >
+                      <tbody style="font-weight: 500;">
+                      
+                      <tr>
+                        <td>Discount</td><td>:</td><td>{{model['discount']}}</td>
+                      </tr>
+                      <tr *ngIf="model['taxtype'] == 'igst'">
+                        <td>IGST</td><td>:</td><td>{{model['taxamount']}}</td>                        
+                      </tr>
+                      <tr *ngIf="model['taxtype'] == 'cgst'">
+                        <td>CGST</td><td>:</td><td>{{model['taxamount']/2}}</td>                        
+                                               
+                      </tr>
+                      <tr *ngIf="model['taxtype'] == 'cgst'">
+                                               
+                        <td>SGST</td><td>:</td><td>{{model['taxamount']/2}}</td>                        
+                      </tr>
+                      <tr>
+                        <td>Net Amount</td><td>:</td><td>Rs. {{model['NetAmount']}}</td>
+                      </tr>
+                      <!-- <tr >
+                        <td>Total</td><td>:</td><td>Rs. {{model['TotalAmount']}}</td>
+                      </tr> -->
+                    </tbody>
+                  </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="bill">
+              <div class="row">
+              <div class="col-6"></div>
+               <div class="col-2">
+                 Total 
+               </div>
+               <div class="col-1">
+                 :
+               </div>
+               <div class="col-3">
+                 Rs. {{model['TotalAmount']}}
+               </div>
+              </div>
+              <div class="row">
+                <div class="col-6"></div>
+                <div class="col-2">
+                  Discount(%)
+                </div>
+                <div class="col-1">
+                  :
+                </div>
+                <div class="col-3">
+                  {{model['discount']}}
+                </div>
+               </div>
+               <div class="row">
+                <div class="col-6"></div>
+                <div class="col-2">
+                  Net Amount 
+                </div>
+                <div class="col-1">
+                  :
+                </div>
+                <div class="col-3">
+                  Rs. {{model['NetAmount']}}
+                </div>
+               </div>
+            </div> -->
+            <br>
+            <br>
+            <div class="sangleName">
+              For {{company['CompanyName']}}
+            </div>
+            <br>
+            <div class="foot">
+              <div class="row" style="padding-left: 15px;font-weight: 600;">
+                Business Terms:<br>
+                1.Goods once sold will not be taken back.<br>
+                2.All disputes subject to BAGHPAT jurisdiction.<br>
+                3.No Guarantee of any good.<br>
+                E. & O.E.
+              </div>
+              <div class="row">
+                <div class="col-6" style="font-size: 15px;font-weight: 600;">
+                
+                </div>
+                <div class="col-6" style="text-align: right;">
+                  Auth Signatory
+                </div>
+              </div>
+            </div>
+      </div>
+  </div>
+  </div>
+  </div>
+</app-card>

@@ -1,0 +1,50 @@
+<app-card title="Ledger Browser">
+  <div class="row" style="margin-bottom : 2%">
+    <div class="col-2">
+      Choose Party
+    </div>
+    <div class="col-3">
+      <select class="form-control form-control-sm" [(ngModel)]="ledgerType">
+        <option *ngFor="let ledgertype of LedgerTypes" [value]="ledgertype['PartyId']">{{ledgertype['PartyName']}}</option>
+      </select>
+    </div>
+    
+    <div class="col-3">
+      <select class="form-control form-control-sm" [(ngModel)]="ledgerType1">
+        <option  [value]=""></option>
+        <option *ngFor="let ledgertype of customerList" [value]="ledgertype['Id']">{{ledgertype['Name']}}</option>
+      </select>
+    </div>
+    <div class="col-2">
+      <button class="btn btn-sm btn-primary" (click)="getLedgerBrowser()">Get Ledgers</button>
+    </div>
+  </div>
+  <ngx-datatable 
+  class="data-table" 
+  [rows]="dataRows"
+  [columns]="dataColumns" 
+  [columnMode]="'force'" 
+  [headerHeight]="50" 
+  [footerHeight]="'100'" 
+  [rowHeight] = "'auto'" 
+  [scrollbarH]="true"
+  [limit]="'50'">
+
+  <!-- <ngx-datatable-column width="50">
+    <ng-template let-row="row" ngx-datatable-cell-template>
+      <i class="fa fa-edit fa-2x" style="color:blueviolet;cursor:pointer" (click)="editLedger(row)"></i>
+    </ng-template>
+  </ngx-datatable-column> -->
+  <ngx-datatable-column *ngFor="let col of dataColumns" [name]="col['name']" [prop]="col['prop']">
+  </ngx-datatable-column>
+  <!-- <ngx-datatable-column>
+    <ng-template let-row="row" let-rowIndex = "rowIndex" ngx-datatable-cell-template>
+      <i class="fa fa-trash fa-2x" style="color:blueviolet;cursor:pointer" (click)="deleteLedger(row['LedgerId'],rowIndex)"></i>
+    </ng-template>
+  </ngx-datatable-column> -->
+  </ngx-datatable>
+
+  <div style="text-align: right;margin-top : 2%">
+    <button class="btn btn-primary btn-sm" (click)="exportToExcel()">Export</button>
+  </div>
+</app-card>

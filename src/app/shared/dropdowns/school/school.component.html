@@ -1,0 +1,5 @@
+<select class="form-control form-control-sm" [(ngModel)]="ddvalue" (ngModelChange)="dropDownValueChanged()">
+  <option *ngFor="let options of dropdownOptions" [value]="options['Id']">
+    {{options['Name']}}
+  </option>
+</select>

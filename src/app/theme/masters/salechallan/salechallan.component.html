@@ -1,0 +1,238 @@
+<app-card [title]="'Sale Challan'">
+
+
+  <app-modal-basic #modalLarge [dialogClass]="'modal-lg'">
+    <div class="app-modal-header">
+        <h4 class="modal-title">Batch No.</h4>
+        <button type="button" class="close basic-close" (click)="modalLarge.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="app-modal-body" id="print" style="text-align: center">
+      <ngx-datatable 
+      class="data-table"
+      [rows]="batchlist"
+      [columnMode]="'force'" 
+      [headerHeight]="50"  
+      [rowHeight]="45" 
+      [scrollbarH]="true" 
+      [limit]="50"
+      [selected]="selected"
+        [selectionType]="'checkbox'" 
+        [selectAllRowsOnPage]="true"  (select)='onSelect($event)'>
+
+      <ngx-datatable-column name="Select" [width]="35" [sortable]="false" [canAutoResize]="false" [draggable]="true" [resizeable]="false" [headerCheckboxable]="true" [checkboxable]="true">
+      </ngx-datatable-column>
+      <ngx-datatable-column [sortable]="false" name="Batch"  prop="batch_no" width="60">
+        <ng-template let-row="row" let-value="value" let-rowIndex="rowIndex" ngx-datatable-cell-template>
+          {{row['batch_no']}}
+        </ng-template>
+      </ngx-datatable-column> 
+      <ngx-datatable-column [sortable]="false" name="Qty"  prop="Qty" width="60">
+        <ng-template let-row="row" let-value="value" let-rowIndex="rowIndex" ngx-datatable-cell-template>
+          {{row['Qty']}}
+        </ng-template>
+      </ngx-datatable-column> 
+      <ngx-datatable-column [sortable]="false" name="Rate"  prop="netrate" width="60">
+        <ng-template let-row="row" let-value="value" let-rowIndex="rowIndex" ngx-datatable-cell-template>
+          {{row['netrate']}}
+        </ng-template>
+      </ngx-datatable-column> 
+ 
+
+</ngx-datatable>
+
+
+    </div>
+    <div class="app-modal-footer">
+        <button type="button" class="btn btn-default waves-effect"
+            (click)="modalLarge.hide()">Close</button>
+    </div>
+    <div class="app-modal-footer">
+        <button (click)="sumbitbatch();modalLarge.hide()" type="button" class="btn btn-primary">Save</button>
+    </div>
+</app-modal-basic>
+  
+ <form #SaleOrder="ngForm" (ngSubmit)="submit()">
+   <div class="row">
+     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+       Id
+     </div>
+     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+       <input class="form-control" name="SaleId" [ngModel]="model['SaleId']" readonly> 
+     </div>
+     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+       Customer Name
+     </div>
+     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+       <input class="form-control" name="CustomerName" [(ngModel)]="model['CustomerName']">
+     </div>
+   </div>
+   <div class="row">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+      Select Customer
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+      <select class="form-control" name="SchoolId" (change)="customerchange()"  [(ngModel)]="model['SchoolId']" >
+        <option *ngFor="let school of SchoolList" [value]="school['SchoolId']">
+          {{school['SchoolName']}}
+        </option>
+      </select>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+      Date
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+      <input type="date" class="form-control" name="CreatedDate" [(ngModel)]="model['CreatedDate']" [readonly]="Type=='EditSale'">
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+      Taxname
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+      <select class="form-control" name="taxtype" [(ngModel)]="model['taxtype']">
+        <option value="igst">IGST</option>
+        <option value="cgst">CGST</option>
+      </select>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+      Bill Type
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+      <select class="form-control" name="Blltype" [(ngModel)]="model['billtype']">
+        <option value="Cash">Cash</option>
+        <option value="Bank">Bank</option>
+        <option value="Check">Check</option>
+      </select>
+    </div>
+   </div>
+   
+ </form>
+  <div style="margin:2%;">
+    <button class="btn btn-sm btn-success" (click)="addrow()">
+      Add Row
+    </button>
+  </div>
+
+  <ngx-datatable 
+  class="data-table"
+  [rows]="dataRows"
+  [columnMode]="'force'" 
+  [headerHeight]="50" 
+  [footerHeight]="100" 
+  [rowHeight]="45" 
+  [scrollbarH]="true" 
+  [limit]="50">
+  <ngx-datatable-column [sortable]="false" name="Batch"  prop="batch_no" width="60">
+    <ng-template let-row="row" let-value="value" let-rowIndex="rowIndex" ngx-datatable-cell-template>
+      <i class="fa fa-pencil-square" (click)="updatebatch(rowIndex,'batch_no');modalLarge.show()" alt="BatchNo"></i>
+      
+    </ng-template>
+  </ngx-datatable-column> 
+
+  <ngx-datatable-column name="Item Name" prop="ItemId">
+    <ng-template ngx-datatable-cell-template let-row="row" let-rowIndex="rowIndex" let-value="value">
+      <select class="form-control" [ngModel]="row['ItemId']"
+       (change)="updateItem(rowIndex,'ItemId',$event.target.value)">
+        <option *ngFor="let item of ItemList" [value]="item['ItemId']">
+          {{item['ItemName']}}
+        </option>
+      </select>
+    </ng-template>
+  </ngx-datatable-column>
+
+
+  <ngx-datatable-column name="Rate" prop="rate">
+    <ng-template let-row="row" ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+      <input type="number" min="0"  class="form-control" (change)="update1(rowIndex,'rate',$event.target.value)" [value]="value">
+    </ng-template>
+  </ngx-datatable-column>
+  
+  <ngx-datatable-column name="disc" prop="disc"  width="100"  >
+    <ng-template let-row="row" ngx-datatable-cell-template  let-rowIndex="rowIndex" let-row="row" let-value="value">
+      <input type="number" min="0"  class="form-control" (change)="update1(rowIndex,'disc',$event.target.value)" [value]="value">
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Qty" prop="Quantity" width="100">
+    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+      <input type="number" min="0"  class="form-control" (change)="update1(rowIndex,'Quantity',$event.target.value)" [value]="value">
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Free" prop="freeqty" width="100">
+    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+      <input type="number" min="0"  class="form-control" (change)="update1(rowIndex,'freeqty',$event.target.value)" [value]="value">
+    </ng-template>
+  </ngx-datatable-column>
+  <!-- <ngx-datatable-column name="Tax(%)" prop="tex_rate">
+    <ng-template let-row="row" ngx-datatable-cell-template>
+      {{row['tex_rate']}}
+    </ng-template>
+  </ngx-datatable-column> -->
+  <ngx-datatable-column name="CGST(%)" prop="tex_rate" width="90">
+    <ng-template let-row="row" ngx-datatable-cell-template>
+      {{row['tex_rate']/2}}
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="SGST(%)" prop="tex_rate" width="90">
+    <ng-template let-row="row" ngx-datatable-cell-template>
+      {{row['tex_rate']/2}}
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Amount" prop="NetPrice">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      {{row['NetPrice']}}
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column width="10">
+    <ng-template let-row="row" let-rowIndex = "rowIndex" ngx-datatable-cell-template>
+      <i class="fa fa-trash fa-2x" style="color:blueviolet;cursor:pointer" (click)="deleterow(rowIndex)"></i>
+    </ng-template>
+  </ngx-datatable-column>
+
+</ngx-datatable>
+
+<div style="margin:2%">
+  <form #SaleOrder="ngForm" (ngSubmit)="submit()">
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        Total Amount
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" name="TotalAmount" [ngModel]="model['TotalAmount']" readonly>
+      </div>
+    </div>  
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        Tax Amount
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" name="taxamount" [ngModel]="model['taxamount']" readonly>
+      </div>
+    </div>    
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        Discount
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" type="number"  name="discount" [(ngModel)]="model['discount']" (ngModelChange)="applydiscount()">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        Net Amount
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" name="NetAmount" [ngModel]="model['NetAmount']" readonly>
+      </div>
+    </div>
+    <div style="text-align: center;margin:2%">
+      <button type="submit" class="btn btn-success" [disabled]="dataRows.length==0">Sale</button>
+    </div>
+
+  </form>
+  <div style="text-align: right;" *ngIf="Type=='EditSale'">
+    <button class="btn btn-success" (click)="printInvoice()">Generate Invoice</button>
+  </div>
+</div>
+</app-card>

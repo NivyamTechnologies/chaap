@@ -1,0 +1,77 @@
+<app-card [title]="title">
+  <form #AddlistForm = "ngForm" (ngSubmit)="formSubmitted()">
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        Id
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control " readonly name="ItemId" [ngModel]="model.ListId" >
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        Name<span color="red">*</span>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control " required name="ItemName" [(ngModel)]="model.ListName">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        School Name
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <select class="form-control form-control-sm" name="School" [(ngModel)]="model['SchoolId']">
+          <option *ngFor="let options of SchoolList" [value]="options['Id']">
+            {{options['Name']}}
+          </option>
+        </select>
+        <!-- <dropdown name="School"  (emitValue)="dropdownValue($event,'SchoolId')" ></dropdown> -->
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        Prakashan
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <select class="form-control " name="Prakashan" [(ngModel)]="PartyId" (ngModelChange)="getItems()">
+          <option *ngFor="let prakashan of Prakashans" [value]="prakashan['PartyId']">{{prakashan['PartyName']}}</option>
+        </select>
+      </div>
+    </div>
+    <br>
+    <br>
+      <div class="row">
+        <div class="col-lg-5 col-sm-5 col-xs-12" >
+        <div class="list">
+          <label style="font-size: larger;margin: 4%">Select Books</label>
+          <ul class="list-group">
+            <li class="list-group-item" [ngStyle]="{'background-color' : selected.indexOf(books['ItemId'])!=-1?'#65adff':'',
+                                                    'color' : selected.indexOf(books['ItemId'])!=-1?'#ffffff':'black'}" *ngFor="let books of Items" (click)="onSelect(books)">
+            <div style="text-align: center;">
+              {{books['ItemName']}}(<small>{{books['setcode']}}</small>)
+            </div> 
+            <div style="text-align: right;">
+              <small>MRP. {{books['ItemMrp']}}</small>
+            </div>
+            </li>
+          </ul>
+        </div> 
+        </div>
+        <div class="col-lg-5 col-sm-5 col-xs-12" style="text-align: right ;" >
+          <div class="list">
+            <label style="font-size: larger;margin: 4%">Books Selected</label>
+            <ul class="list-group">
+              <li class="list-group-item" *ngFor="let books of SelectedBooks" style="color : black">
+                {{books['ItemName']}}
+              </li>
+            </ul>
+            
+          </div>
+          <div style="text-align: center;">
+            <label style="font-weight: bolder;">Total Books Selected : {{SelectedBooks.length}}</label>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div style="text-align: center;">
+        <button type="submit" [disabled]="selected.length ==0" class="btn btn-primary">submit</button>
+      </div>
+    </form>
+</app-card>

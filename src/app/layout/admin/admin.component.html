@@ -1,0 +1,411 @@
+<div id="pcoded" class="pcoded" [attr.nav-type]="navType" [attr.theme-layout]="themeLayout" [attr.vertical-placement]="verticalPlacement" [attr.vertical-layout]="verticalLayout" [attr.pcoded-device-type]="pcodedDeviceType" [attr.vertical-nav-type]="verticalNavType"
+    [attr.vertical-effect]="verticalEffect" [attr.vnavigation-view]="vnavigationView" [attr.fream-type]="freamType" [attr.sidebar-img]="sidebarImg" [attr.sidebar-img-type]="sidebarImgType" [attr.layout-type]="layoutType" (window:resize)="onResize($event)">
+    <app-modal-basic #modalLarge [dialogClass]="'modal-lg'">
+        <div class="app-modal-header">
+            <h4 class="modal-title">Add Item</h4>
+            <button type="button" class="btn btn-default"
+            (click)="saveitem();modalLarge.hide()">Save</button>
+            <button type="button" class="close basic-close" (click)="modalLarge.hide()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+          
+        </div>
+        <div class="app-modal-body" style="text-align: center;overflow-x:auto;">
+           
+            <div class="card-block">
+
+                <div class="row">
+                    <label class="col-sm-2 col-lg-2 col-form-label">Item Name</label>
+                    <div class="col-sm-6 col-lg-6">
+                        <div class="input-group">
+                            <span class="input-group-prepend">
+                                                                        <label class="input-group-text"><i class="icofont icofont-queen"></i></label>
+                                                                    </span>
+                            <input type="text" [(ngModel)]="myvar.ItemName" class="form-control form-control" placeholder="ItemName" required>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="row">
+                    <label class="col-sm-2 col-lg-2 col-form-label">Item Group</label>
+                    <div class="col-sm-4 col-lg-4">
+                        <div class="input-group">
+                            <span class="input-group-prepend">
+                                                                        <label class="input-group-text"><i class="icofont icofont-queen"></i></label>
+                                                                    </span>
+                            <input type="text" [(ngModel)]="myvar.ItemCode" class="form-control form-control" placeholder="Item Group">
+                        </div>
+                    </div>
+               
+                    <label class="col-sm-2 col-lg-2 col-form-label">Active</label>
+                    <div class="col-sm-4 col-lg-4">
+                        <div class="input-group">
+                            <span class="input-group-prepend">
+                              <label class="input-group-text"><i class="icofont icofont-queen"></i></label>
+                             </span>
+                           
+                           <select class="form-control" [(ngModel)]="myvar.Active">
+                               <option  value="Y"> Y</option>
+                               <option  value="N">N</option>
+                           </select>
+                                                                   
+                        </div>
+                    </div>
+                </div> 
+                <div class="row">
+                    <label class="col-sm-2 col-lg-2 col-form-label">Short Name</label>
+                    <div class="col-sm-4 col-lg-4">
+                        <div class="input-group">
+                            <span class="input-group-prepend">
+                                                                        <label class="input-group-text"><i class="icofont icofont-queen"></i></label>
+                                                                    </span>
+                            <input type="text" [(ngModel)]="myvar.setcode" class="form-control form-control" placeholder="setcode">
+                        </div>
+                    </div>
+                    <label class="col-sm-2 col-lg-2 col-form-label">Item MRP</label>
+                    <div class="col-sm-4 col-lg-4">
+                        <div class="input-group">
+                            <span class="input-group-prepend">
+                                                                        <label class="input-group-text"><i class="icofont icofont-presentation"></i></label>
+                                                                    </span>
+                            <input type="number" [(ngModel)]="myvar.ItemMrp" class="form-control form-control-capitalize" placeholder="ItemMrp" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-2 col-lg-2 col-form-label">HSN Code</label>
+                    <div class="col-sm-4 col-lg-4">
+                        <div class="input-group">
+                            <span class="input-group-prepend">
+                                                                        <label class="input-group-text"><i class="icofont icofont-wifi"></i></label>
+                                                                    </span>
+                            <input type="number" class="form-control form-control-uppercase" [(ngModel)]="myvar.HsnCode" placeholder="HsnCode">
+                        </div>
+                    </div>
+                    <label class="col-sm-2 col-lg-2 col-form-label">Opening Qty</label>
+                    <div class="col-sm-4 col-lg-4">
+                        <div class="input-group">
+                            <span class="input-group-prepend">
+                                                                        <label class="input-group-text"><i class="icofont icofont-shield"></i></label>
+                                                                    </span>
+                            <input type="number" class="form-control form-control-lowercase" [(ngModel)]="myvar.Qty" placeholder="Qty">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-2 col-lg-2 col-form-label">Purchase Price</label>
+                    <div class="col-sm-4 col-lg-4">
+                        <div class="input-group">
+                            <span class="input-group-prepend">
+                                                                        <label class="input-group-text"><i class="icofont icofont-presentation"></i></label>
+                                                                    </span>
+                            <input type="number" class="form-control form-control-left" [(ngModel)]="myvar.purchaseprice" placeholder="Purchase Price	">
+                        </div>
+                    </div>
+                
+                    <label class="col-sm-2 col-lg-2 col-form-label">Sale Rate</label>
+                    <div class="col-sm-4 col-lg-4">
+                        <div class="input-group">
+                            <span class="input-group-prepend">
+                                                                        <label class="input-group-text"><i class="icofont icofont-presentation"></i></label>
+                                                                    </span>
+                            <input type="number" class="form-control form-control-left" [(ngModel)]="myvar.rate" placeholder="rate	">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-2 col-lg-2 col-form-label">State SGST</label>
+                    <div class="col-sm-4 col-lg-4">
+                        <div class="input-group">
+                            <span class="input-group-prepend">
+                                                                        <label class="input-group-text"><i class="icofont icofont-presentation"></i></label>
+                                                                    </span>
+                            <input type="number" class="form-control form-control-left" [(ngModel)]="myvar.state_taxSGST" placeholder="State SGST	">
+                        </div>
+                    </div>
+                    <label class="col-sm-2 col-lg-2 col-form-label">CENTER CGST</label>
+                    <div class="col-sm-4 col-lg-4">
+                        <div class="input-group">
+                            <span class="input-group-prepend">
+                                                                        <label class="input-group-text"><i class="icofont icofont-presentation"></i></label>
+                                                                    </span>
+                            <input type="number" class="form-control form-control-left" [(ngModel)]="myvar.center_taxCGST" placeholder="CENTER CGST	">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-2 col-lg-2 col-form-label">Tax Rate(IGST)</label>
+                    <div class="col-sm-4 col-lg-4">
+                        <div class="input-group">
+                            <span class="input-group-prepend">
+                                                                        <label class="input-group-text"><i class="icofont icofont-presentation"></i></label>
+                                                                    </span>
+                            <input type="number" class="form-control form-control-left" [(ngModel)]="myvar.tex_rate" placeholder="Tax Rate	">
+                        </div>
+                    </div>
+                </div>
+             
+    
+            </div>
+                    
+        </div>
+        <div class="app-modal-footer">
+            <button type="button" class="btn btn-default"
+            (click)="saveitem();modalLarge.hide()">Save</button>
+            <button type="button" class="btn btn-default waves-effect"
+                (click)="modalLarge.hide()">Close</button>
+    
+        </div>
+       
+    </app-modal-basic>
+    <app-modal-basic #customer [dialogClass]="'modal-lg'">
+        <div class="app-modal-header">
+            <h4 class="modal-title">Add Customer</h4>
+            <button type="button" class="close basic-close" (click)="customer.hide()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="app-modal-body" style="text-align: center;overflow-x:auto;">
+           
+              <form #SchoolForm="ngForm" (ngSubmit)="submit()">
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        Id
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control " readonly name="SchoolId" [ngModel]="model.SchoolId">
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        Customer Name
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" name="SchoolName"  [(ngModel)]="model.SchoolName" >
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        Address
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" name="Address" [(ngModel)]="model.Address">
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        Contact No.
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" name="Contact"  [(ngModel)]="model.Contact" >
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        Discount(%)
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" type="number" min=1 name="Discount" [(ngModel)]="model.discount">
+      </div>
+    </div>
+        <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        Gst No
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" name="gstno" [(ngModel)]="model.gstno">
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        Pan No.
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" name="panno"  [(ngModel)]="model.panno" >
+      </div>
+    </div>
+      <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        Vichal no.
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" name="VichalNo" [(ngModel)]="model.VichleNo">
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        GRRNO.
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" name="GRRNO"  [(ngModel)]="model.GRRNo" >
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        EwayBillNo.
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" name="EwayBillNo" [(ngModel)]="model.EwayBillNo">
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        AadharNo.
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" type="number" name="AadharNo"  [(ngModel)]="model.AadharNo" >
+      </div>
+    </div>
+  
+  
+    
+    <div style="text-align: center;margin: 2%">
+      <button type="submit"  (click)="customer.hide()" class="btn btn-success">Submit</button>
+    </div>
+  </form>
+                    
+        </div>
+        <div class="app-modal-footer">
+            
+            <button type="button" class="btn btn-default waves-effect"
+                (click)="customer.hide()">Close</button>
+    
+        </div>
+       
+    </app-modal-basic>
+    <div class="pcoded-overlay-box"></div>
+    <div class="pcoded-container navbar-wrapper">
+        <nav class="navbar header-navbar pcoded-header" [attr.header-theme]="headerTheme" [attr.pcoded-header-position]="pcodedHeaderPosition">
+            <div class="navbar-wrapper">
+                <div class="navbar-logo">
+                    <a class="mobile-menu" id="mobile-collapse" href="javascript:" (click)="toggleOpened()" [exclude]="'#main_navbar'" (clickOutside)="onClickedOutsideSidebar($event)">
+                        <i class="ti-menu"></i>
+                    </a>
+                    <a [routerLink]="['/dashboard/default/']">
+                       <h4>Dashboard</h4> 
+                    </a>
+                    <a href="javascript:" style="    padding: 18px;
+                    font-size: x-large;"  (click)="logout()">
+                        <i class="fa fa-sign-out" aria-hidden="true"></i>
+                     </a>
+                    <a href="javascript:" class="mobile-options" (click)="toggleHeaderNavRight()">
+                        <i class="ti-more"></i>
+                    </a>
+                </div>
+                
+
+            </div>
+            <div class="navbar-container container-fluid" style="width: auto;">
+                <ul class="nav-left">
+               
+      <li class="header-search">
+        <div class="input-group" style="padding-top: 5%;" placement="bottom"  >
+     
+      <button ngbTooltip="Add Item" (click)="modalLarge.show()" class="btn btn-primary btn-sm " style="margin-top: -1%;"><i class="fa fa-cube"></i></button>
+      
+      <button ngbTooltip="Add Customer" (click)="customer.show()" class="btn btn-primary btn-sm " style="margin-top: -1%;"><i class="fa fa-user"></i></button>
+      
+    
+    </div>
+      
+      </li>
+      
+    
+      
+                </ul>
+             
+                
+            
+             
+              </div>
+
+        </nav>
+        <div class="pcoded-main-container" [style.margin-top]="headerFixedMargin">
+            <div class="pcoded-wrapper">
+                <nav id="main_navbar" class="pcoded-navbar" (clickOutside)="onClickedOutsideSidebar($event)" [exclude]="'#mobile-collapse'" [attr.pcoded-header-position]="pcodedHeaderPosition" [attr.navbar-theme]="navBarTheme" [attr.active-item-theme]="activeItemTheme"
+                    sub-item-theme="theme2" active-item-style="style0" [attr.pcoded-navbar-position]="pcodedSidebarPosition">
+                    <div class="pcoded-inner-navbar main-menu" appAccordion>
+                        <perfect-scrollbar [style.max-width]="'235px'" [style.max-height]="sidebarFixedHeight" [config]="config">
+                            <span *ngFor="let asideItems of menuItems.getAll()" class="d-color">
+                <div class="pcoded-navigation-label" [attr.menu-title-theme]="menuTitleTheme">{{asideItems.label}}</div>
+                <ul class="pcoded-item pcoded-left-item" [attr.item-border]="itemBorder" [attr.item-border-style]="itemBorderStyle" [attr.subitem-border]="subItemBorder" *ngFor="let asideItem of asideItems.main" appAccordionLink group="{{asideItem.state}}">
+                  <li [routerLinkActive]="['active']" *ngIf="asideItem.type === 'external'" appAccordionLink group="{{asideItem.state}}">
+                    <a href="{{asideItem.external}}" target="{{asideItem.target ? '_blank' : '_self'}}" appAccordionToggle>
+                      <span class="pcoded-micon"><i class="{{ asideItem.icon }}"></i><b>{{ asideItem.short_label }}</b></span>
+                            <span class="pcoded-mtext">{{ asideItem.name }}</span>
+                            <span *ngFor="let asideBadge of asideItem.badge" class="pcoded-badge label label-{{ asideBadge.type }}">{{asideBadge.value}}</span>
+                            <span class="pcoded-mcaret"></span>
+                            </a>
+                            </li>
+
+                            <li [routerLinkActive]="['active']" *ngIf="asideItem.type === 'link'" appAccordionLink group="{{asideItem.state}}">
+                                <a [routerLink]="['/', asideItem.main_state, asideItem.state]" target="{{asideItem.target ? '_blank' : '_self'}}" appAccordionToggle *ngIf="asideItem.main_state; else mainContent">
+                                    <span class="pcoded-micon"><i class="{{ asideItem.icon }}"></i><b>{{ asideItem.short_label }}</b></span>
+                                    <span class="pcoded-mtext">{{ asideItem.name }}</span>
+                                    <span *ngFor="let asideBadge of asideItem.badge" class="pcoded-badge label label-{{ asideBadge.type }}">{{asideBadge.value}}</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>
+                                <ng-template #mainContent>
+                                    <a [routerLink]="['/', asideItem.state]" target="{{asideItem.target ? '_blank' : '_self'}}" appAccordionToggle>
+                                        <span class="pcoded-micon"><i class="{{ asideItem.icon }}"></i><b>{{ asideItem.short_label }}</b></span>
+                                        <span class="pcoded-mtext">{{ asideItem.name }}</span>
+                                        <span *ngFor="let asideBadge of asideItem.badge" class="pcoded-badge label label-{{ asideBadge.type }}">{{asideBadge.value}}</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </ng-template>
+                            </li>
+                            <li [routerLinkActive]="['active']" *ngIf="asideItem.type === 'sub'" class="pcoded-hasmenu" [attr.dropdown-icon]="dropDownIcon" [attr.subitem-icon]="subItemIcon" appAccordionLink group="{{asideItem.state}}">
+                                <a [routerLinkActive]="['active']" href="javascript:;" appAccordionToggle>
+                                    <span class="pcoded-micon"><i class="{{ asideItem.icon }}"></i><b>{{ asideItem.short_label }}</b></span>
+                                    <span class="pcoded-mtext">{{ asideItem.name }}</span>
+                                    <span *ngFor="let asideBadge of asideItem.badge" class="pcoded-badge label label-{{ asideBadge.type }}">{{asideBadge.value}}</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>
+                                <ul class="pcoded-submenu">
+                                    <ng-template ngFor let-asideChildren [ngForOf]="asideItem.children">
+                                        <li [routerLinkActive]="['active']" *ngIf="asideChildren.type !== 'sub'">
+                                            <a [routerLink]="['/', asideItem.state, asideChildren.state]" target="{{asideChildren.target ? '_blank' : '_self'}}">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext">{{ asideChildren.name }} </span>
+                                                <span *ngFor="let asideChildrenBadge of asideChildren.badge" class="pcoded-badge label label-{{ asideChildrenBadge.type }}">{{asideChildrenBadge.value}}</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+
+                                        <li [routerLinkActive]="['active']" class="pcoded-hasmenu" [attr.dropdown-icon]="dropDownIcon" [attr.subitem-icon]="subItemIcon" *ngIf="asideChildren.type === 'sub'" appAccordionLink group="sub-toggled">
+                                            <a href="javascript:;" appAccordionToggle>
+                                                <span class="pcoded-micon"><i class="ti-direction-alt"></i></span>
+                                                <span class="pcoded-mtext">{{ asideChildren.name }}</span>
+                                                <span *ngFor="let asideChildrenBadge of asideChildren.badge" class="pcoded-badge label label-{{ asideChildrenBadge.type }}">{{asideChildrenBadge.value}}</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                            <ul class="pcoded-submenu">
+                                                <ng-template ngFor let-asideChildrenSub [ngForOf]="asideChildren.children">
+                                                    <li [routerLinkActive]="['active']">
+                                                        <a [routerLink]="['/', asideItem.state, asideChildren.state, asideChildrenSub.state]" target="{{asideChildrenSub.target ? '_blank' : '_self'}}">
+                                                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                            <span class="pcoded-mtext">{{ asideChildrenSub.name }}</span>
+                                                            <span *ngFor="let asideChildrenSubBadge of asideChildrenSub.badge" class="pcoded-badge label label-{{ asideChildrenSubBadge.type }}">{{asideChildrenSubBadge.value}}</span>
+                                                            <span class="pcoded-mcaret"></span>
+                                                        </a>
+                                                    </li>
+                                                </ng-template>
+                                            </ul>
+                                        </li>
+                                    </ng-template>
+                                </ul>
+                            </li>
+                            </ul>
+                            </span>
+                            <div class="text-muted text-center"> v1.0 </div>
+                        </perfect-scrollbar>
+                    </div>
+                </nav>
+                <div class="pcoded-content">
+                    <div class="pcoded-inner-content">
+                        <!-- Main-body start -->
+                        <div class="main-body">
+                            <div class="page-wrapper">
+                                <router-outlet>
+                                    <app-title></app-title>
+                                    <app-breadcrumbs></app-breadcrumbs>
+                                    <app-spinner></app-spinner>
+                                </router-outlet>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

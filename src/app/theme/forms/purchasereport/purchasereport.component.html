@@ -1,0 +1,38 @@
+<ngx-datatable class="data-table" style="height: 500px;" [rows]="mydata" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="100" [rowHeight]="45" [scrollbarH]="true" [scrollbarV]="true" [limit]="50">
+
+
+ 
+  <ngx-datatable-column [sortable]="true " name="BillNo " [width]='10' prop="BillNo ">
+      <ng-template let-row="row " ngx-datatable-cell-template>
+          {{row.BillNo }}
+      </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column [sortable]="true " name="PartyName " [width]='180' prop="PartyName ">
+      <ng-template let-row="row " ngx-datatable-cell-template>
+          {{row.PartyName}}
+      </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column [sortable]="true " name="Total " [width]='20' prop="Total ">
+    <ng-template let-row="row " ngx-datatable-cell-template>
+        {{row.Total}}
+    </ng-template>
+</ngx-datatable-column>
+<ngx-datatable-column [sortable]="true " name="DocDate " [width]='20' prop="DocDate ">
+  <ng-template let-row="row " ngx-datatable-cell-template>
+      {{row.DocDate}}
+  </ng-template>
+</ngx-datatable-column>
+
+  
+
+  <ngx-datatable-footer>
+      <ng-template ngx-datatable-footer-template let-rowCount="rowCount" let-offset="offset">
+          <div style="padding: 5px 10px">
+              <div><strong>Total Amount</strong>:{{totalamount}}</div>
+              <hr style="width:100%" />
+              <div>Rows: {{ rowCount }} </div>
+          </div>
+      </ng-template>
+  </ngx-datatable-footer>
+
+</ngx-datatable>

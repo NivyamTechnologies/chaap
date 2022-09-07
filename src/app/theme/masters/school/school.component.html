@@ -1,0 +1,138 @@
+<app-card >
+  <form #SchoolForm="ngForm" (ngSubmit)="submit()">
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        Id
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control " readonly name="SchoolId" [ngModel]="model.SchoolId">
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        Customer Name
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" name="SchoolName"  [(ngModel)]="model.SchoolName" >
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        Address
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" name="Address" [(ngModel)]="model.Address">
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        Contact No.
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" name="Contact"  [(ngModel)]="model.Contact" >
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        Discount(%)
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" type="number" min=1 name="Discount" [(ngModel)]="model.discount">
+      </div>
+    </div>
+        <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        Gst No
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" name="gstno" [(ngModel)]="model.gstno">
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        Pan No.
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" name="panno"  [(ngModel)]="model.panno" >
+      </div>
+    </div>
+      <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        Vichal no.
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" name="VichalNo" [(ngModel)]="model.VichleNo">
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        GRRNO.
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" name="GRRNO"  [(ngModel)]="model.GRRNo" >
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        EwayBillNo.
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" name="EwayBillNo" [(ngModel)]="model.EwayBillNo">
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        AadharNo.
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" type="number" name="AadharNo"  [(ngModel)]="model.AadharNo" >
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        Transport.
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" name="Transport" [(ngModel)]="model.Transport">
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        shippaddress.
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control"  name="shippaddress"  [(ngModel)]="model.shippaddress" >
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        shippgstno.
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" name="shippgstno" [(ngModel)]="model.shippgstno">
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        shipppanno.
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control"  name="shipppanno"  [(ngModel)]="model.shipppanno" >
+      </div>
+    </div>
+       <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        shippaadharno.
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" name="shippaadharno" [(ngModel)]="model.shippaadharno">
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        shipp Name.
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" name="shippname" [(ngModel)]="model.shippname">
+      </div>
+    </div>
+  
+    
+    <div style="text-align: center;margin: 2%">
+      <button type="submit" class="btn btn-success">Submit</button>
+    </div>
+  </form>
+</app-card> 
+
+
+  
+  
+
+
+
+
+   

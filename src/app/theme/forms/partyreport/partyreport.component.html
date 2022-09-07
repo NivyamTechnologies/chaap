@@ -1,0 +1,39 @@
+<ngx-datatable class="data-table" style="height: 500px;" [rows]="mydata" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="100" [rowHeight]="45" [scrollbarH]="true" [scrollbarV]="true" [limit]="50">
+
+    <ngx-datatable-column [width]='1'>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <i class="fa fa-edit fa-2x" style="color:blueviolet;cursor:pointer" (click)="editparty(row)"></i>
+        </ng-template>
+      </ngx-datatable-column>
+    <ngx-datatable-column [sortable]="true " name="PartyId " [width]='10' prop="PartyId ">
+        <ng-template let-row="row " ngx-datatable-cell-template>
+            {{row.PartyId }}
+        </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column [sortable]="true " name="PartyName " [width]='280' prop="PartyName ">
+        <ng-template let-row="row " ngx-datatable-cell-template>
+            {{row.PartyName}}
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column [sortable]="true " name="GstNo " [width]='20' prop="GstNo ">
+        <ng-template let-row="row " ngx-datatable-cell-template>
+            {{row.GstNo}}
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column [sortable]="true " name="MobileNo " [width]='20' prop="MobileNo ">
+        <ng-template let-row="row " ngx-datatable-cell-template>
+            {{row.MobileNo}}
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column [width]='2'>
+        <ng-template let-row="row" let-rowIndex = "rowIndex" ngx-datatable-cell-template>
+          <i class="fa fa-trash fa-2x" style="color:blueviolet;cursor:pointer" (click)="deleteparty(row['PartyId'],rowIndex)"></i>
+        </ng-template>
+      </ngx-datatable-column>
+
+
+
+
+
+</ngx-datatable>

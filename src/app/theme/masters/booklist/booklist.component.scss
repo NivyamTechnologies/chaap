@@ -1,0 +1,20 @@
+li:hover
+{
+    cursor : pointer;
+    color : white;
+    background-color: aqua;
+}
+.list
+{
+   max-height : 500px;
+    width : 300px;
+    overflow: hidden;
+    border : 0.75px solid;
+    border-color : lightblue;
+    border-radius : 2px;
+    overflow-y: scroll;
+    text-align: center;
+    background-color : #597394;
+    color : #ffffff;
+    margin : 4%;
+}

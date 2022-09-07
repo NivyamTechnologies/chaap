@@ -1,0 +1,59 @@
+{
+    "Sale" : {
+        "Query" : "Select * from t_sale_master",
+        "Columns" : [
+            {"name" : "Sale Id","prop" : "SaleId"},
+            {"name"  :"Customer Name", "prop" : "CustomerName"},
+            {"name" : "Total Amount", "prop" : "TotalAmount"},
+            {"name"  :"Created date", "prop" : "CreatedDate"}
+        ]
+    },
+    "School" : {
+        "Query" : "Select * from t_school_master",
+        "Columns" : [
+            {"name" : "Customer Id", "prop" : "SchoolId"},
+            {"name" : "Customer Name", "prop" : "SchoolName"},
+            {"name" : "Address", "prop" : "Address"},
+            {"name" : "Contact", "prop" : "Contact"},
+            {"name" : "Discount", "prop" : "discount"}
+        ]
+    },
+    "TaxReport" : {
+        "Query" : "SELECT sum((ifnull(t_sale_detail.rate,0)*12)/100) as TaxRate,t_sale_detail.tex_rate,ItemName FROM t_sale_detail left join item on t_sale_detail.ItemId = item.ItemId left join t_sale_master on t_sale_master.SaleId =t_sale_detail.SaleId where t_sale_detail.tex_rate >0 and t_sale_master.CreatedDate>='FromDate' and t_sale_master.CreatedDate<='ToDate' group by t_sale_detail.tex_rate,ItemName order by t_sale_detail.tex_rate DESC",
+        "Columns" : [
+            {"name" : "Item Name", "prop" : "ItemName"},
+            {"name" : "Tax", "prop" : "tex_rate"},
+            {"name" : "Tax Amount", "prop" : "TaxRate"}
+        ]
+    },
+    "StockReport" : {
+        "Query" : "select x.ItemName,x.ItemId,(x.PurQty-ifnull(y.saleQty,0)) balance,ifnull(x.PurQty,0) purchase,ifnull(y.SaleQty,0) SaleQty from (Select i.ItemId,i.ItemName,sum(ifnull(item.Qty,0)) PurQty from item i left join  t_doc_detail item on i.ItemId =item.ItemId group by item.ItemId ) as x left join ( select   sale.ItemId ItemId,sum(ifnull(sale.Quantity,0)) SaleQty from  t_sale_detail sale group by sale.ItemId) as y on x.ItemId = y.ItemId order by balance desc",
+        "Columns" : [
+            {"name" : "ItemName", "prop" : "ItemName","width":"400"},
+            {"name" : "SaleQty", "prop" : "SaleQty"},
+            {"name" : "purchase", "prop" : "purchase"},
+            {"name" : "balance", "prop" : "balance"}
+        ]
+    },
+    "StockvalueReport" : {
+        "Query" : "select x.ItemName,x.ItemId,(x.PurQty-ifnull(y.saleQty,0)) balance,(x.PurQty-ifnull(y.saleQty,0))*x.rate value,ifnull(x.PurQty,0) purchase,ifnull(y.SaleQty,0) SaleQty from (Select i.ItemId,i.ItemName,i.rate,sum(ifnull(item.Qty,0)) PurQty from item i left join  t_doc_detail item on i.ItemId =item.ItemId group by item.ItemId ) as x left join ( select   sale.ItemId ItemId,sum(ifnull(sale.Quantity,0)) SaleQty from  t_sale_detail sale group by sale.ItemId) as y on x.ItemId = y.ItemId order by balance desc",
+        "Columns" : [
+            {"name" : "ItemName", "prop" : "ItemName","width":"400"},
+            {"name" : "SaleQty", "prop" : "SaleQty"},
+            {"name" : "purchase", "prop" : "purchase"},
+            {"name" : "balance", "prop" : "balance"},
+            {"name" : "value", "prop" : "value"}
+        ]
+    },
+    "LedgerBrowser" : {
+        "Query" : "Select * from (Select t1.*,t2.PartyName from Payment t1 inner join party t2 on t1.PartyId = t2.PartyId) as u",
+        "Columns" : [
+            {"name" : "Party Name", "prop" : "PartyName"},
+            {"name" : "Amount", "prop" : "Amount"},
+            {"name" : "Ledger Type", "prop" : "LedgerType"},
+            {"name" : "Narration", "prop" : "Narration"},
+            {"name" : "Mode", "prop" : "Mode"},
+            {"name" : "Date", "prop" : "Date"}
+        ]
+    }
+}

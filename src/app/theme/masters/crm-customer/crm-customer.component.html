@@ -1,0 +1,104 @@
+<app-card >
+  <form #CrmCustomerForm="ngForm" (ngSubmit)="submit()">
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        Id
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control " readonly name="customer_id" [ngModel]="model.customer_id">
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        Customer Name
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" name="name"  [(ngModel)]="model.name" >
+    </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        Address
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" name="address" [(ngModel)]="model.address">
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        Mobile No.
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" name="mobile_no"  [(ngModel)]="model.mobile_no" >
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        Alt Mobile No.
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" name="alt_mobile_no" [(ngModel)]="model.alt_mobile_no">
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        Email
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" name="email"  [(ngModel)]="model.email" >
+      </div>
+    </div>
+
+        <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        city
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" name="city" [(ngModel)]="model.city">
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        area
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" name="area"  [(ngModel)]="model.area" >
+      </div>
+    </div>
+      <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        Model
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" name="Model" [(ngModel)]="model.Model">
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        Brand.
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" name="Brand"  [(ngModel)]="model.Brand" >
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        SerialNo.
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" name="SerialNo" [(ngModel)]="model.SerialNo">
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        PinCode
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" type="number" name="PinCode"  [(ngModel)]="model.PinCode" >
+      </div>
+    </div>
+
+  
+    
+    <div style="text-align: center;margin: 2%">
+      <button type="submit" class="btn btn-success">Submit</button>
+    </div>
+  </form>
+</app-card> 
+
+
+  
+  
+
+
+
+
+   

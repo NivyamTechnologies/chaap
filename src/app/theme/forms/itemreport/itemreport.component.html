@@ -1,0 +1,43 @@
+<ngx-datatable class="data-table" style="height: 500px;" [rows]="mydata" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="100" [rowHeight]="45"  [scrollbarH]="true" [scrollbarV]="true" [limit]="50">
+    <ngx-datatable-column [width]='1'>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <i class="fa fa-edit fa-2x" style="color:blueviolet;cursor:pointer" (click)="edititem(row)"></i>
+        </ng-template>
+      </ngx-datatable-column>
+
+    <!-- <ngx-datatable-column [sortable]="true " name="ItemCode " [width]='10' prop="ItemCode ">
+        <ng-template let-row="row " ngx-datatable-cell-template>
+            {{row.ItemCode }}
+        </ng-template>
+    </ngx-datatable-column> -->
+
+    <ngx-datatable-column [sortable]="true " name="ItemName" [width]='280' prop="ItemName ">
+        <ng-template let-row="row " ngx-datatable-cell-template>
+            {{row.ItemName}}
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column [sortable]="true " name="rate " [width]='20' prop="rate ">
+        <ng-template let-row="row " ngx-datatable-cell-template>
+            {{row.rate}}
+        </ng-template>
+    </ngx-datatable-column>
+    <!-- <ngx-datatable-column [sortable]="true " name="party " [width]='20' prop="party ">
+        <ng-template let-row="row " ngx-datatable-cell-template>
+            {{row.parkasan}}
+        </ng-template>
+    </ngx-datatable-column> -->
+    <ngx-datatable-column [sortable]="true " name="shortname " [width]='20' prop="setcode ">
+        <ng-template let-row="row " ngx-datatable-cell-template>
+            {{row.setcode}}
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column [width]='2'>
+        <ng-template let-row="row" let-rowIndex = "rowIndex" ngx-datatable-cell-template>
+          <i class="fa fa-trash fa-2x" style="color:blueviolet;cursor:pointer" (click)="deleteItem(row['ItemId'],rowIndex)"></i>
+        </ng-template>
+      </ngx-datatable-column>
+</ngx-datatable>
+
+<div style="text-align: right;margin-top : 2%">
+    <button class="btn btn-primary btn-sm" (click)="exportToExcel()">Export</button>
+  </div>

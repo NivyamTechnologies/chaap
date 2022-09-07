@@ -1,0 +1,39 @@
+<app-card title="Sale Report">
+  
+  <div class="row">
+    <div class="col-2">
+      From
+    </div>
+    <div class="col-3">
+      <input type="date" class="form-control" [(ngModel)]="from">
+    </div>
+    <div class="col-2">
+      To
+    </div>
+    <div class="col-3">
+      <input type="date" class="form-control" [(ngModel)]="to">
+    </div>
+    <div class="col-2">
+      <button class="btn btn-primary btn-sm" (click)="getReport()">Get report</button>
+    </div>
+  </div>
+
+  <br>
+  <ngx-datatable 
+  class="data-table"
+  [rows]="dataRows"
+  [columns]="dataColumns"
+  [columnMode]="'force'" 
+  [headerHeight]="50" 
+  [footerHeight]="100" 
+  [rowHeight]="45" 
+  [scrollbarH]="true" 
+  [limit]="150">
+
+  </ngx-datatable>
+
+  <div style="text-align: right;margin-top : 2%">
+    <button class="btn btn-primary btn-sm" (click)="exportToExcel()">Export</button>
+  </div>
+  
+</app-card>

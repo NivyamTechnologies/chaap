@@ -1,0 +1,122 @@
+<app-card title="New Print">
+  <div style="text-align: right">
+    <a (click)="printInvoice()" class="btn btn-info btn-sm" style="border-radius: 15px; font-size: 15px; background-color: darkblue; border-color: darkblue; color: white;">
+      <span class="glyphicon glyphicon-print"></span> Print
+    </a>
+  </div>
+
+
+   
+  <div id="invoice-POS">
+    
+    <div id="top">
+      <div class="logo" id="logo"></div>
+      <div class="info" id="infoadd"> 
+          {{company['CompanyAddress']}}
+      </div><!--End Info-->
+      <div id="infomob"> 
+         8273339231
+      </div><!--End Info-->
+    </div><!--End InvoiceTop-->
+    
+    <div id="mid">
+      <div class="info" id="info">
+        <h6>Billed to :{{model['SaleId']}}</h6>
+        <p id="ptag">{{model['CustomerName']}} ({{model['billtype']}})</p>    
+         <p id="ptag" >{{school['Contact']}}</p>
+        <p id="ptag">{{school['Address']}}</p>
+
+      </div>
+    </div><!--End Invoice Mid-->
+    
+    <div id="bot">
+
+					<div id="table">
+						<table>
+							<tr class="tabletitle" id="tabletitle">
+								<td class="item"><h2>Item</h2></td>
+								<td class="Hours"><h2>Qty</h2></td>
+								<td class="Rate"><h2>Sub Total</h2></td>
+							</tr>
+
+							<tr class="service" id="service" *ngFor = 'let data of dataRows, let i = index'>
+								<td class="tableitem"><p id ="itemtext" class="itemtext">{{data.ItemName}}</p></td>
+								<td class="tableitem"><p id ="itemtext" class="itemtext" >{{data.Quantity}}</p></td>
+								<td class="tableitem"><p  id ="itemtext" class="itemtext">{{data.NetPrice}}</p></td>
+							</tr>
+
+              <tr class="tabletitle" id="tabletitle">
+                <td></td>
+								<td class="Rate"><h2>Total</h2></td>
+								<td class="payment"><h2>₹ {{model['NetAmount'] | number:'1.0-0'}}</h2></td>
+							</tr>
+
+						</table>
+					</div><!--End Table-->
+   
+					<div id="legalcopy">
+						<p class="legal"><strong>Thank you for your Visit.</strong>  
+						</p>
+					</div>
+
+				</div><!--End InvoiceBot-->
+        <div style="margin-bottom: 30px;">
+
+        </div>
+    <div id="top">
+      <div class="logo" id="logo"></div>
+      <div class="info" id="infoadd"> 
+          {{company['CompanyAddress']}}
+           
+      </div><!--End Info-->
+
+      <div id="infomob"> 
+         8273339231
+      </div><!--End Info-->
+    </div><!--End InvoiceTop-->
+    
+    <div id="mid">
+      <div class="info" id="info">
+        <h6>Billed to :{{model['SaleId']}}</h6>
+        <p id="ptag">{{model['CustomerName']}} ({{model['billtype']}})</p>    
+         <p id="ptag" >{{school['Contact']}}</p>
+        <p id="ptag">{{school['Address']}}</p>
+
+      </div>
+    </div><!--End Invoice Mid-->
+    
+    <div id="bot">
+
+					<div id="table">
+						<table>
+							<tr class="tabletitle" id="tabletitle">
+								<td class="item"><h2>Item</h2></td>
+								<td class="Hours"><h2>Qty</h2></td>
+								<td class="Rate"><h2>Sub Total</h2></td>
+							</tr>
+
+							<tr class="service" id="service" *ngFor = 'let data of dataRows, let i = index'>
+								<td class="tableitem"><p id ="itemtext" class="itemtext">{{data.ItemName}}</p></td>
+								<td class="tableitem"><p id ="itemtext" class="itemtext" >{{data.Quantity}}</p></td>
+								<td class="tableitem"><p  id ="itemtext" class="itemtext">{{data.NetPrice}}</p></td>
+							</tr>
+
+              <tr class="tabletitle" id="tabletitle">
+                <td></td>
+								<td class="Rate"><h2>Total</h2></td>
+								<td class="payment"><h2>₹ {{model['NetAmount'] | number:'1.0-0'}}</h2></td>
+							</tr>
+
+						</table>
+					</div><!--End Table-->
+   
+					<div id="legalcopy">
+						<p class="legal"><strong>Thank you for your Visit.</strong>  
+						</p>
+					</div>
+
+				</div><!--End InvoiceBot-->
+  </div><!--End Invoice-->
+
+
+</app-card>

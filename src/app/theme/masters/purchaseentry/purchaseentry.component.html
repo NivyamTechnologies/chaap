@@ -1,0 +1,125 @@
+<app-card [title]="'Purchase Challan'">
+  
+ <form #SaleOrder="ngForm" (ngSubmit)="submit()">
+
+   <div class="row">
+
+    <div class="col-md-2 col-sm-2 ">
+      Select Party
+    </div>
+    <div class=" col-md-3 col-sm-3 ">
+      <select class="form-control" name="PartyId" [(ngModel)]="model['PartyId']" >
+        <option *ngFor="let school of SchoolList" [value]="school['PartyId']">
+          {{school['PartyName']}}
+        </option>
+      </select>
+    </div>
+    <div class="col-sm-2 col-md-2">
+      <input type="text" class="form-control" name="BillNo" [(ngModel)]="BillNo" placeholder="BillNo">
+
+  </div>
+    <div class=" col-md-4 col-sm-4">
+      <input type="date" class="form-control" name="DocDate" [(ngModel)]="model['DocDate']" [readonly]="Type=='EditSale'">
+    </div>
+   </div>
+
+   
+ </form>
+  <div style="margin:2%;">
+    <button class="btn btn-sm btn-success" (click)="addrow()">
+      Add Row
+    </button>
+  </div>
+
+  <ngx-datatable 
+  class="data-table"
+  [rows]="dataRows"
+  [columnMode]="'force'" 
+  [headerHeight]="50" 
+  [footerHeight]="100" 
+  [rowHeight]="45" 
+  [scrollbarH]="true" 
+  [limit]="50">
+
+
+  <ngx-datatable-column name="Item Name" prop="ItemId">
+    <ng-template ngx-datatable-cell-template let-row="row" let-rowIndex="rowIndex" let-value="value">
+      <select class="form-control" [ngModel]="row['ItemId']"
+       (change)="updateItem(rowIndex,'ItemId',$event.target.value)">
+        <option *ngFor="let item of ItemList" [value]="item['ItemId']">
+          {{item['ItemName']}}
+        </option>
+      </select>
+    </ng-template>
+  </ngx-datatable-column>
+
+
+  <ngx-datatable-column name="Rate" prop="rate">
+    <ng-template let-row="row" ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+      <input type="number" min="0"  class="form-control" (change)="update1(rowIndex,'rate',$event.target.value)" [value]="value">
+    </ng-template>
+  </ngx-datatable-column>
+  
+  <ngx-datatable-column name="dis" prop="dis"    >
+    <ng-template let-row="row" ngx-datatable-cell-template  let-rowIndex="rowIndex" let-row="row" let-value="value">
+      <input type="number" min="0"  class="form-control" (change)="update1(rowIndex,'dis',$event.target.value)" [value]="value">
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Qty" prop="Qty" width="100">
+    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+      <input type="number" min="0"  class="form-control" (change)="update1(rowIndex,'Qty',$event.target.value)" [value]="value">
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Gst%" prop="tex_rate" width="100">
+    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+      <input type="number" min="0"  class="form-control" (change)="update1(rowIndex,'tex_rate',$event.target.value)" [value]="value">
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Batch"  prop='batch_no' [sortable]="false" width="100"> 
+    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+
+        <input class="form-control form-control-sm" autofocus (blur)="update1(rowIndex,'batch_no',$event.target.value)" type="text" [value]="value" />       </ng-template>
+</ngx-datatable-column>
+
+  <ngx-datatable-column name="Amount" prop="netrate">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      {{row['netrate']}}
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column width="10">
+    <ng-template let-row="row" let-rowIndex = "rowIndex" ngx-datatable-cell-template>
+      <i class="fa fa-trash fa-2x" style="color:blueviolet;cursor:pointer" (click)="deleterow(rowIndex)"></i>
+    </ng-template>
+  </ngx-datatable-column>
+
+</ngx-datatable>
+
+<div style="margin:2%">
+  <form #SaleOrder="ngForm" (ngSubmit)="submit()">
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        Total Amount
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" name="TotalAmount" [ngModel]="model['Total']" readonly>
+      </div>
+    </div>  
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        Tax Amount
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" name="taxamount" [ngModel]="model['taxamount']" readonly>
+      </div>
+    </div>    
+
+    <div style="text-align: center;margin:2%" *ngIf="Type!='EditSale'">
+      <button type="submit" class="btn btn-success" [disabled]="dataRows.length==0">Purchase</button>
+    </div>
+
+  </form>
+  <!-- <div style="text-align: right;" *ngIf="Type=='EditSale'">
+    <button class="btn btn-success" (click)="printInvoice()">Generate Invoice</button>
+  </div> -->
+</div>
+</app-card>

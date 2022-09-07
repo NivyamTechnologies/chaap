@@ -1,0 +1,28 @@
+<app-card title="customer Browser">
+  <ngx-datatable class="data-table" 
+  [rows]="dataRows"
+  [columns]="dataColumns" 
+  [columnMode]="'force'" 
+  [headerHeight]="50" 
+  [footerHeight]="100" 
+  [rowHeight]="'auto'" 
+  [scrollbarH]="true" 
+  [limit]="50">
+
+  <ngx-datatable-column width="20">
+    <ng-template let-row="row" ngx-datatable-cell-template>
+      <i class="fa fa-edit fa-2x" style="color:blueviolet;cursor:pointer" (click)="editSchool(row)"></i>
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column *ngFor="let col of dataColumns" [name]="col['name']" [prop]="col['prop']">
+  </ngx-datatable-column>
+  <ngx-datatable-column width="10">
+    <ng-template let-row="row" let-rowIndex = "rowIndex" ngx-datatable-cell-template>
+      <i class="fa fa-trash fa-2x" style="color:blueviolet;cursor:pointer" (click)="deleteSale(row['SchoolId'],rowIndex)"></i>
+    </ng-template>
+  </ngx-datatable-column>
+</ngx-datatable>
+<div style="text-align: right;margin-top : 2%">
+  <button class="btn btn-primary btn-sm" (click)="exportToExcel()">Export</button>
+</div>
+</app-card>
