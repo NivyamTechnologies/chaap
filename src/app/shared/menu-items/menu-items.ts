@@ -115,6 +115,14 @@ const MENUITEMS = [
         name: 'Sale Report',
         type: 'link',
         icon: 'ti-crown'
+      },
+      {
+        state: 'stockvaluereport',
+        short_label: 'FW',
+        main_state: 'reports',
+        name: 'Item Wise Report',
+        type: 'link',
+        icon: 'ti-crown'
       }
     
 

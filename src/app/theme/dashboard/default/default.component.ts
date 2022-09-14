@@ -67,7 +67,7 @@ debugger
      this.totalmonth = item["data"][0].totalmonth
     
     })
-    let qry2 = "SELECT sum(TotalAmount) totaldaily from t_sale_master where CreatedDate = CURDATE()"
+    let qry2 = "SELECT sum(TotalAmount) totaldaily from t_sale_master where Date(CreatedDate) = CURDATE()"
     this.api.Post("/users/executeSelectStatement",{Query : qry2}).subscribe(item=>{
      this.totaldaily = item["data"][0].totaldaily
     

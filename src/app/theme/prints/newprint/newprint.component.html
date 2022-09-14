@@ -21,10 +21,11 @@
     
     <div id="mid">
       <div class="info" id="info">
-        <h6>Billed to :{{model['SaleId']}}</h6>
+        <h6>Billed to :{{model['BillNo']}}</h6>
+        <p id="ptag">Date:-   {{model['CreatedDate'] | date :"medium"}}</p>    
         <p id="ptag">{{model['CustomerName']}} ({{model['billtype']}})</p>    
-         <p id="ptag" >{{school['Contact']}}</p>
-        <p id="ptag">{{school['Address']}}</p>
+        <p id="ptag" >{{model['CustomerMobile']}}</p>
+       <p id="ptag">{{model['CustomerAddress']}}</p>
 
       </div>
     </div><!--End Invoice Mid-->
@@ -77,10 +78,10 @@
     
     <div id="mid">
       <div class="info" id="info">
-        <h6>Billed to :{{model['SaleId']}}</h6>
+        <h6>Billed to :{{model['BillNo']}}</h6>
         <p id="ptag">{{model['CustomerName']}} ({{model['billtype']}})</p>    
-         <p id="ptag" >{{school['Contact']}}</p>
-        <p id="ptag">{{school['Address']}}</p>
+         <p id="ptag" >{{model['CustomerMobile']}}</p>
+        <p id="ptag">{{model['CustomerAddress']}}</p>
 
       </div>
     </div><!--End Invoice Mid-->

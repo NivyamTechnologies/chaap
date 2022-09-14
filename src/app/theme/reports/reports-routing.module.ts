@@ -28,7 +28,7 @@ const route : Routes = [
                 path : 'stockvaluereport',
                 component : StockvaluereportComponent,
                 data : {
-                    title : 'stock value Report',
+                    title : 'Item Wise Report',
                     icon : 'ti-layers',
                     status : true
                 }

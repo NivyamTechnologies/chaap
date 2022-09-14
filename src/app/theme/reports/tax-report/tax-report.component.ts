@@ -20,7 +20,7 @@ export class TaxReportComponent implements OnInit {
   to = new Date().toISOString().split('T')[0]
   getReport()
   {
-    this.api.Post("/total/getBrowser",{Condition : "where CreatedDate>='FromDate' and CreatedDate<='ToDate'"},["EntityName=Sale","Type=Report","Dropdown=DateRange","From="+this.from,"To="+this.to]).subscribe(data=>{
+    this.api.Post("/total/getBrowser",{Condition : "where Date(CreatedDate)>='FromDate' and Date(CreatedDate)<='ToDate'"},["EntityName=Sale","Type=Report","Dropdown=DateRange","From="+this.from,"To="+this.to]).subscribe(data=>{
       // this.dataRows = data['data']
       console.log("browserdata",data)
       this.dataColumns = data['Columns']
